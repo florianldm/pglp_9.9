@@ -35,6 +35,22 @@ public class Groupe {
     }
 
     /**
+     * Ajout d'une forme dans le groupe.
+     * @param forme à ajouter.
+     */
+    public void add(final Forme forme) {
+        this.formes.add(forme);
+    }
+
+    /**
+     * Suppression d'une forme dans un groupe.
+     * @param forme à supprimer du groupe.
+     */
+    public void remove(final Forme forme) {
+        this.formes.remove(forme);
+    }
+
+    /**
      * Déplacement de chaque forme du groupe.
      * @param p le point destination.
      */
