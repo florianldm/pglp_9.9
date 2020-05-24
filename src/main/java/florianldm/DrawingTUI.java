@@ -342,7 +342,7 @@ public class DrawingTUI {
             }
             return new CommandeDelete();
         }
-        return null;
+        return new CommandeDelete();
     }
 
     /**
