@@ -19,12 +19,13 @@ public class DrawingApp {
 
         while (!commande.equals("quit")) {
             commande = cmd.nextLine();
-            if (!commande.equals("quit") && !commande.equals("help")) {
+            if (!commande.equals("quit") && !commande.equals("help") && !commande.equals("") && (commande.startsWith("cr") || commande.startsWith("ce") || commande.startsWith("tr") || commande.startsWith("rc") || commande.startsWith("move") || commande.startsWith("delete") || commande.startsWith("gp"))) {
                 d.nextCommand(commande, formes, g).execute();
                 d.nextCommand("print", formes, g).execute();
             }
             if (commande.equals("help")) {
                 System.out.println("Commandes:");
+                System.out.println("Quitter: quit");
                 System.out.println("****************************");
                 System.out.println("CREER une forme: ");
                 System.out.println("Cercle: ce+numero(attachés) = position x,"

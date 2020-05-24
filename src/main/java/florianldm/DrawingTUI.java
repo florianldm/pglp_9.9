@@ -90,7 +90,12 @@ public class DrawingTUI {
             if (cmd1[0].split(" ").length == 2) {
                 String[] gauche = cmd1[0].split(" ");
                 String nomforme = gauche[1].trim();
-                String[] destination = cmd1[1].trim().split(",");
+                String[] destination = cmd1[1].split(",");
+                int i = 0;
+                for (String s : destination) {
+                    destination[i] = s.replaceAll(" ", "");
+                    i++;
+                }
                 if (destination.length == 2) {
                     int posx = Integer.parseInt(destination[0]);
                     int posy = Integer.parseInt(destination[1]);
@@ -218,7 +223,7 @@ public class DrawingTUI {
     private Commande moveForme(final String nom, final int posx,
                                final int posy,
                                final ArrayList<Forme> liste,
-                               final GroupeDao groupes) {
+                               final GroupeDao groupes) throws CommandeException {
         int ok = 0;
         int k = 0;
 
@@ -314,6 +319,7 @@ public class DrawingTUI {
                 return new CommandeMove(groupeadeplacer,
                         new Point(posx, posy));
             }
+            throw new CommandeException();
         }
 
         return null;
