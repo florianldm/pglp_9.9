@@ -1,7 +1,5 @@
 package florianldm;
 
-import org.w3c.dom.css.Rect;
-
 public class CommandeRectangle implements Commande{
     /** Le rectangle sur lequel exécuter la commande. */
     private Rectangle r;

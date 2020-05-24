@@ -61,8 +61,8 @@ public class Triangle extends Forme {
      */
     @Override
     public void move(final Point p) {
-        this.p1 = p;
-        this.p2 = new Point(p2.getX() + (p.getX() - p1.getX()), p2.getY() + (p.getY() - p1.getY()));
-        this.p3 = new Point(p3.getX() + (p.getX() - p1.getX()), p3.getY() + (p.getY() - p1.getY()));
+        this.p1 = new Point(p1.getX() + p.getX(), p1.getY() + p.getY());
+        this.p2 = new Point(p2.getX() + p.getX(), p2.getY() + p.getY());
+        this.p3 = new Point(p3.getX() + p.getX(), p3.getY() + p.getY());
     }
 }

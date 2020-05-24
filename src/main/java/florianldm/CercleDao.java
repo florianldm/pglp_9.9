@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class CercleDao implements Dao<Cercle> {
     /** Liste de cercles. */
-    private ArrayList<Cercle> cercles = new ArrayList<Cercle>;
+    private ArrayList<Cercle> cercles = new ArrayList<Cercle>();
 
     /**
      * Getter.
