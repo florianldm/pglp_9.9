@@ -262,6 +262,8 @@ public class DrawingTUI {
             }
 
             return new CommandeMove(f2, new Point(posx, posy));
+        } else if (!nom.startsWith("gp")) {
+            throw new CommandeException();
         }
 
         //Partie déplacement de groupe.
@@ -318,8 +320,7 @@ public class DrawingTUI {
 
                 return new CommandeMove(groupeadeplacer,
                         new Point(posx, posy));
-            }
-            throw new CommandeException();
+            } else throw new CommandeException();
         }
 
         return null;
@@ -334,7 +335,7 @@ public class DrawingTUI {
      */
     private Commande deleteForme(final String nom,
                                  final ArrayList<Forme> liste,
-                                 final GroupeDao groupes) {
+                                 final GroupeDao groupes) throws CommandeException {
         int ok = 0;
         int k = 0;
 
@@ -366,6 +367,8 @@ public class DrawingTUI {
             }
 
             return new CommandeDelete();
+        } else if (!nom.startsWith("gp")) {
+            throw new CommandeException();
         }
 
         //Suppression d'un groupe.
@@ -393,7 +396,7 @@ public class DrawingTUI {
     private Commande createGroupe(final String nomgroupe,
                                   final String[] formes,
                                   final ArrayList<Forme> liste,
-                                  final GroupeDao g) {
+                                  final GroupeDao g) throws CommandeException {
         Groupe groupe = new Groupe(nomgroupe);
         int pb = 0;
         for (int i = 0; i < formes.length - 1; i++) {
@@ -418,6 +421,8 @@ public class DrawingTUI {
                 }
             }
             g.save(groupe);
+        } else {
+            throw new CommandeException();
         }
         return new CommandeGroupe();
     }
