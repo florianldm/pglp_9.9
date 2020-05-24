@@ -28,8 +28,12 @@ public class DrawingTUI {
                         int posy = Integer.parseInt(s2[1]);
                         int rayon = Integer.parseInt(s2[2]);
                         return addCercle(nomcercle, posx, posy, rayon, liste);
-                    } else throw new CommandeException();
-                } else throw new CommandeException();
+                    } else {
+                        throw new CommandeException();
+                    }
+                } else {
+                    throw new CommandeException();
+                }
 
             } else if (cmd.startsWith("cr")) { //carre
                 //Exemple commande: cr1 = 0,5,50
@@ -43,8 +47,12 @@ public class DrawingTUI {
                         int posy = Integer.parseInt(s2[1]);
                         int taille = Integer.parseInt(s2[2]);
                         return addCarre(nomcarre, posx, posy, taille, liste);
-                    } else throw new CommandeException();
-                } else throw new CommandeException();
+                    } else {
+                        throw new CommandeException();
+                    }
+                } else {
+                    throw new CommandeException();
+                }
 
             } else if (cmd.startsWith("rc")) { //rectangle
                 //Exemple commande: rc = 0,5,50
@@ -60,8 +68,12 @@ public class DrawingTUI {
                         int posy = Integer.parseInt(s2[3]);
                         return addRectangle(nomrectangle, hauteur,
                                 largeur, posx, posy, liste);
-                    } else throw new CommandeException();
-                } else throw new CommandeException();
+                    } else {
+                        throw new CommandeException();
+                    }
+                } else {
+                    throw new CommandeException();
+                }
 
             } else if (cmd.startsWith("tr")) { //triangle
                 //Exemple commande: tr1 = 0,5,0,2,0,4
@@ -79,8 +91,12 @@ public class DrawingTUI {
                         int pos3y = Integer.parseInt(s2[5]);
                         return addTriangle(nomtriangle, pos1x, pos1y,
                                 pos2x, pos2y, pos3x, pos3y, liste);
-                    } else throw new CommandeException();
-                } else throw new CommandeException();
+                    } else {
+                        throw new CommandeException();
+                    }
+                } else {
+                    throw new CommandeException();
+                }
 
             }
         }
@@ -100,15 +116,21 @@ public class DrawingTUI {
                     int posx = Integer.parseInt(destination[0]);
                     int posy = Integer.parseInt(destination[1]);
                     return moveForme(nomforme, posx, posy, liste, g);
-                } else throw new CommandeException();
-            } else throw new CommandeException();
+                } else {
+                    throw new CommandeException();
+                }
+            } else {
+                throw new CommandeException();
+            }
 
         } else if (cmd.startsWith("delete")) { //Commande DELETE
             String[] cmd1 = cmd.split(" ");
             if (cmd1.length == 2) {
                 String nomforme = cmd1[1].trim();
                 return deleteForme(nomforme, liste, g);
-            } else throw new CommandeException();
+            } else {
+                throw new CommandeException();
+            }
 
         } else if (cmd.startsWith("quit")) { //Commande QUIT
             System.out.println("Fermeture");
@@ -128,8 +150,12 @@ public class DrawingTUI {
                         i++;
                     }
                     return createGroupe(nomgroupe, formesgroupe, liste, g);
-                } else throw new CommandeException();
-            } else throw new CommandeException();
+                } else {
+                    throw new CommandeException();
+                }
+            } else {
+                throw new CommandeException();
+            }
         }
         return null;
     }
@@ -223,7 +249,8 @@ public class DrawingTUI {
     private Commande moveForme(final String nom, final int posx,
                                final int posy,
                                final ArrayList<Forme> liste,
-                               final GroupeDao groupes) throws CommandeException {
+                               final GroupeDao groupes) throws
+            CommandeException {
         int ok = 0;
         int k = 0;
 
@@ -320,7 +347,9 @@ public class DrawingTUI {
 
                 return new CommandeMove(groupeadeplacer,
                         new Point(posx, posy));
-            } else throw new CommandeException();
+            } else {
+                throw new CommandeException();
+            }
         }
 
         return null;
@@ -335,7 +364,8 @@ public class DrawingTUI {
      */
     private Commande deleteForme(final String nom,
                                  final ArrayList<Forme> liste,
-                                 final GroupeDao groupes) throws CommandeException {
+                                 final GroupeDao groupes) throws
+            CommandeException {
         int ok = 0;
         int k = 0;
 
