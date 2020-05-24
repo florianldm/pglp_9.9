@@ -23,10 +23,12 @@ public class DrawingTUI {
                     String nomcercle = s[0].trim();
                     String params = s[1].replaceAll(" ", "");
                     String[] s2 = params.trim().split(",");
-                    int posx = Integer.parseInt(s2[0]);
-                    int posy = Integer.parseInt(s2[1]);
-                    int rayon = Integer.parseInt(s2[2]);
-                    return addCercle(nomcercle, posx, posy, rayon, liste);
+                    if (s2.length == 3) {
+                        int posx = Integer.parseInt(s2[0]);
+                        int posy = Integer.parseInt(s2[1]);
+                        int rayon = Integer.parseInt(s2[2]);
+                        return addCercle(nomcercle, posx, posy, rayon, liste);
+                    } else throw new CommandeException();
                 } else throw new CommandeException();
 
             } else if (cmd.startsWith("cr")) { //carre
@@ -36,11 +38,13 @@ public class DrawingTUI {
                     String nomcarre = s[0].trim();
                     String params = s[1].replaceAll(" ", "");
                     String[] s2 = params.trim().split(",");
-                    int posx = Integer.parseInt(s2[0]);
-                    int posy = Integer.parseInt(s2[1]);
-                    int taille = Integer.parseInt(s2[2]);
-                    return addCarre(nomcarre, posx, posy, taille, liste);
-                }
+                    if (s2.length == 3) {
+                        int posx = Integer.parseInt(s2[0]);
+                        int posy = Integer.parseInt(s2[1]);
+                        int taille = Integer.parseInt(s2[2]);
+                        return addCarre(nomcarre, posx, posy, taille, liste);
+                    } else throw new CommandeException();
+                } else throw new CommandeException();
 
             } else if (cmd.startsWith("rc")) { //rectangle
                 //Exemple commande: rc = 0,5,50
@@ -49,12 +53,14 @@ public class DrawingTUI {
                     String nomrectangle = s[0].trim();
                     String params = s[1].replaceAll(" ", "");
                     String[] s2 = params.trim().split(",");
-                    int hauteur = Integer.parseInt(s2[0]);
-                    int largeur = Integer.parseInt(s2[1]);
-                    int posx = Integer.parseInt(s2[2]);
-                    int posy = Integer.parseInt(s2[3]);
-                    return addRectangle(nomrectangle, hauteur,
-                            largeur, posx, posy, liste);
+                    if (s2.length == 4) {
+                        int hauteur = Integer.parseInt(s2[0]);
+                        int largeur = Integer.parseInt(s2[1]);
+                        int posx = Integer.parseInt(s2[2]);
+                        int posy = Integer.parseInt(s2[3]);
+                        return addRectangle(nomrectangle, hauteur,
+                                largeur, posx, posy, liste);
+                    } else throw new CommandeException();
                 } else throw new CommandeException();
 
             } else if (cmd.startsWith("tr")) { //triangle
@@ -64,14 +70,16 @@ public class DrawingTUI {
                     String nomtriangle = s[0].trim();
                     String params = s[1].replaceAll(" ", "");
                     String[] s2 = params.trim().split(",");
-                    int pos1x = Integer.parseInt(s2[0]);
-                    int pos1y = Integer.parseInt(s2[1]);
-                    int pos2x = Integer.parseInt(s2[2]);
-                    int pos2y = Integer.parseInt(s2[3]);
-                    int pos3x = Integer.parseInt(s2[4]);
-                    int pos3y = Integer.parseInt(s2[5]);
-                    return addTriangle(nomtriangle, pos1x, pos1y,
-                            pos2x, pos2y, pos3x, pos3y, liste);
+                    if (s2.length == 6) {
+                        int pos1x = Integer.parseInt(s2[0]);
+                        int pos1y = Integer.parseInt(s2[1]);
+                        int pos2x = Integer.parseInt(s2[2]);
+                        int pos2y = Integer.parseInt(s2[3]);
+                        int pos3x = Integer.parseInt(s2[4]);
+                        int pos3y = Integer.parseInt(s2[5]);
+                        return addTriangle(nomtriangle, pos1x, pos1y,
+                                pos2x, pos2y, pos3x, pos3y, liste);
+                    } else throw new CommandeException();
                 } else throw new CommandeException();
 
             }
@@ -83,9 +91,11 @@ public class DrawingTUI {
                 String[] gauche = cmd1[0].split(" ");
                 String nomforme = gauche[1].trim();
                 String[] destination = cmd1[1].trim().split(",");
-                int posx = Integer.parseInt(destination[0]);
-                int posy = Integer.parseInt(destination[1]);
-                return moveForme(nomforme, posx, posy, liste, g);
+                if (destination.length == 2) {
+                    int posx = Integer.parseInt(destination[0]);
+                    int posy = Integer.parseInt(destination[1]);
+                    return moveForme(nomforme, posx, posy, liste, g);
+                } else throw new CommandeException();
             } else throw new CommandeException();
 
         } else if (cmd.startsWith("delete")) { //Commande DELETE
@@ -103,11 +113,18 @@ public class DrawingTUI {
         } else if (cmd.startsWith("gp")) { //Commande GROUPE
             //gp45 = ce1,rc2,cr47
             String[] cmd1 = cmd.split("=");
-            if (cmd1[0].split(" ").length == 1) {
-                String nomgroupe = cmd1[0].trim();
-                String[] formesgroupe = cmd1[1].trim().split(",");
-                return createGroupe(nomgroupe, formesgroupe, liste, g);
-            }
+            if (cmd1.length == 2) {
+                if (cmd1[0].split(" ").length == 1) {
+                    String nomgroupe = cmd1[0].trim();
+                    String[] formesgroupe = cmd1[1].split(",");
+                    int i = 0;
+                    for (String s : formesgroupe) {
+                        formesgroupe[i] = s.replaceAll(" ", "");
+                        i++;
+                    }
+                    return createGroupe(nomgroupe, formesgroupe, liste, g);
+                } else throw new CommandeException();
+            } else throw new CommandeException();
         }
         return null;
     }
