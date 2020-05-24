@@ -13,75 +13,87 @@ public class DrawingTUI {
      * @return commande.
      */
     public Commande nextCommand(final String cmd, final
-    ArrayList<Forme> liste, final GroupeDao g) {
+    ArrayList<Forme> liste, final GroupeDao g) throws CommandeException {
         if (cmd.startsWith("ce") || cmd.startsWith("cr"
                 + "") || cmd.startsWith("rc") || cmd.startsWith("tr")) {
             if (cmd.startsWith("ce")) { //cercle
                 //Exemple commande: ce1 = 0,0,20
                 String[] s = cmd.split("=");
-                String nomcercle = s[0].trim();
-                String params = s[1];
-                String[] s2 = params.trim().split(",");
-                int posx = Integer.parseInt(s2[0]);
-                int posy = Integer.parseInt(s2[1]);
-                int rayon = Integer.parseInt(s2[2]);
-                return addCercle(nomcercle, posx, posy, rayon, liste);
+                if (s[0].split(" ").length == 1) {
+                    String nomcercle = s[0].trim();
+                    String params = s[1].replaceAll(" ", "");
+                    String[] s2 = params.trim().split(",");
+                    int posx = Integer.parseInt(s2[0]);
+                    int posy = Integer.parseInt(s2[1]);
+                    int rayon = Integer.parseInt(s2[2]);
+                    return addCercle(nomcercle, posx, posy, rayon, liste);
+                } else throw new CommandeException();
 
             } else if (cmd.startsWith("cr")) { //carre
                 //Exemple commande: cr1 = 0,5,50
                 String[] s = cmd.split("=");
-                String nomcarre = s[0].trim();
-                String params = s[1];
-                String[] s2 = params.trim().split(",");
-                int posx = Integer.parseInt(s2[0]);
-                int posy = Integer.parseInt(s2[1]);
-                int taille = Integer.parseInt(s2[2]);
-                return addCarre(nomcarre, posx, posy, taille, liste);
+                if (s[0].split(" ").length == 1) {
+                    String nomcarre = s[0].trim();
+                    String params = s[1].replaceAll(" ", "");
+                    String[] s2 = params.trim().split(",");
+                    int posx = Integer.parseInt(s2[0]);
+                    int posy = Integer.parseInt(s2[1]);
+                    int taille = Integer.parseInt(s2[2]);
+                    return addCarre(nomcarre, posx, posy, taille, liste);
+                }
 
             } else if (cmd.startsWith("rc")) { //rectangle
                 //Exemple commande: rc = 0,5,50
                 String[] s = cmd.split("=");
-                String nomrectangle = s[0].trim();
-                String params = s[1];
-                String[] s2 = params.trim().split(",");
-                int hauteur = Integer.parseInt(s2[0]);
-                int largeur = Integer.parseInt(s2[1]);
-                int posx = Integer.parseInt(s2[2]);
-                int posy = Integer.parseInt(s2[3]);
-                return addRectangle(nomrectangle, hauteur,
-                        largeur, posx, posy, liste);
+                if (s[0].split(" ").length == 1) {
+                    String nomrectangle = s[0].trim();
+                    String params = s[1].replaceAll(" ", "");
+                    String[] s2 = params.trim().split(",");
+                    int hauteur = Integer.parseInt(s2[0]);
+                    int largeur = Integer.parseInt(s2[1]);
+                    int posx = Integer.parseInt(s2[2]);
+                    int posy = Integer.parseInt(s2[3]);
+                    return addRectangle(nomrectangle, hauteur,
+                            largeur, posx, posy, liste);
+                } else throw new CommandeException();
 
             } else if (cmd.startsWith("tr")) { //triangle
                 //Exemple commande: tr1 = 0,5,0,2,0,4
                 String[] s = cmd.split("=");
-                String nomtriangle = s[0].trim();
-                String params = s[1];
-                String[] s2 = params.trim().split(",");
-                int pos1x = Integer.parseInt(s2[0]);
-                int pos1y = Integer.parseInt(s2[1]);
-                int pos2x = Integer.parseInt(s2[2]);
-                int pos2y = Integer.parseInt(s2[3]);
-                int pos3x = Integer.parseInt(s2[4]);
-                int pos3y = Integer.parseInt(s2[5]);
-                return addTriangle(nomtriangle, pos1x, pos1y,
-                        pos2x, pos2y, pos3x, pos3y, liste);
+                if (s[0].split(" ").length == 1) {
+                    String nomtriangle = s[0].trim();
+                    String params = s[1].replaceAll(" ", "");
+                    String[] s2 = params.trim().split(",");
+                    int pos1x = Integer.parseInt(s2[0]);
+                    int pos1y = Integer.parseInt(s2[1]);
+                    int pos2x = Integer.parseInt(s2[2]);
+                    int pos2y = Integer.parseInt(s2[3]);
+                    int pos3x = Integer.parseInt(s2[4]);
+                    int pos3y = Integer.parseInt(s2[5]);
+                    return addTriangle(nomtriangle, pos1x, pos1y,
+                            pos2x, pos2y, pos3x, pos3y, liste);
+                } else throw new CommandeException();
 
             }
         }
         if (cmd.startsWith("move")) { //Commande MOVE
             //move ce1 = 4,5
             String[] cmd1 = cmd.split("=");
-            String[] gauche = cmd1[0].split(" ");
-            String nomforme = gauche[1].trim();
-            String[] destination = cmd1[1].trim().split(",");
-            int posx = Integer.parseInt(destination[0]);
-            int posy = Integer.parseInt(destination[1]);
-            return moveForme(nomforme, posx, posy, liste, g);
+            if (cmd1[0].split(" ").length == 2) {
+                String[] gauche = cmd1[0].split(" ");
+                String nomforme = gauche[1].trim();
+                String[] destination = cmd1[1].trim().split(",");
+                int posx = Integer.parseInt(destination[0]);
+                int posy = Integer.parseInt(destination[1]);
+                return moveForme(nomforme, posx, posy, liste, g);
+            } else throw new CommandeException();
 
         } else if (cmd.startsWith("delete")) { //Commande DELETE
             String[] cmd1 = cmd.split(" ");
-            String nomforme = cmd1[1].trim();
-            return deleteForme(nomforme, liste, g);
+            if (cmd1.length == 2) {
+                String nomforme = cmd1[1].trim();
+                return deleteForme(nomforme, liste, g);
+            } else throw new CommandeException();
 
         } else if (cmd.startsWith("quit")) { //Commande QUIT
             System.out.println("Fermeture");
@@ -91,9 +103,11 @@ public class DrawingTUI {
         } else if (cmd.startsWith("gp")) { //Commande GROUPE
             //gp45 = ce1,rc2,cr47
             String[] cmd1 = cmd.split("=");
-            String nomgroupe = cmd1[0].trim();
-            String[] formesgroupe = cmd1[1].trim().split(",");
-            return createGroupe(nomgroupe, formesgroupe, liste, g);
+            if (cmd1[0].split(" ").length == 1) {
+                String nomgroupe = cmd1[0].trim();
+                String[] formesgroupe = cmd1[1].trim().split(",");
+                return createGroupe(nomgroupe, formesgroupe, liste, g);
+            }
         }
         return null;
     }

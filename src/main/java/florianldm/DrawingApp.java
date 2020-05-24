@@ -8,7 +8,7 @@ public class DrawingApp {
      * Méthode exec qui contient la boucle des interactions.
      * entre l'application et l'utilisateur.
      */
-    public void exec() {
+    public void exec() throws CommandeException{
         String commande = "";
         Scanner cmd = new Scanner(System.in);
         ArrayList<Forme> formes = new ArrayList<Forme>();
