@@ -25,6 +25,7 @@ public class DrawingApp {
             }
             if (commande.equals("help")) {
                 System.out.println("Commandes:");
+                System.out.println("****************************");
                 System.out.println("CREER une forme: ");
                 System.out.println("Cercle: ce+numero(attachés) = position x,"
                         + "position y,rayon ");
@@ -33,10 +34,13 @@ public class DrawingApp {
                 System.out.println("Rectangle: rc+numero(attachés) ="
                         + " hauteur,largeur,position x,position y");
                 System.out.println("Carre: cr+numero(attachés) = positionx,positiony,taille");
+                System.out.println("****************************");
                 System.out.println("CREER un Groupe:");
                 System.out.println("gp+numero(attachés) = nomforme1,nomforme2 etc..");
+                System.out.println("****************************");
                 System.out.println("SUPPRIMER une forme: ");
                 System.out.println("delete nomforme ou delete nomgroupe");
+                System.out.println("****************************");
                 System.out.println("DEPLACER des formes:");
                 System.out.println("move nomgroupe ou move nomforme");
             }
