@@ -1,11 +1,23 @@
 package florianldm;
 
 /**
- * Hello world!
+ * Application.
  *
  */
 public class App {
-    public static void main(String[] args) {
+
+    /**
+     * Constructeur.
+     */
+    public App() {
+
+    }
+
+    /**
+     * Méthode main.
+     * @param args .
+     */
+    public static void main(final String[] args) {
         DrawingApp d = new DrawingApp();
         d.exec();
     }

@@ -15,7 +15,8 @@ public class Triangle extends Forme {
      * @param p22 Point 2.
      * @param p33 Point 3.
      */
-    public Triangle(final String nom, final Point p11, final Point p22, final Point p33) {
+    public Triangle(final String nom, final Point p11,
+                    final Point p22, final Point p33) {
         super(nom);
         this.p1 = p11;
         this.p2 = p22;

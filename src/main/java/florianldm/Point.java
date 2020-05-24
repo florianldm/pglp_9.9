@@ -34,17 +34,17 @@ public class Point {
 
     /**
      * Setter Y.
-     * @param y position Y.
+     * @param y1 position Y.
      */
-    public void setY(final int y) {
-        this.y = y;
+    public void setY(final int y1) {
+        this.y = y1;
     }
 
     /**
      * Setter X.
-     * @param x position x.
+     * @param x1 position x.
      */
-    public void setX(final int x) {
-        this.x = x;
+    public void setX(final int x1) {
+        this.x = x1;
     }
 }

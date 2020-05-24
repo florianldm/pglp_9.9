@@ -15,7 +15,8 @@ public class Rectangle extends Forme {
      * @param l largeur.
      * @param p1 position du rectangle.
      */
-    public Rectangle(final String nom, final int h, final int l, final Point p1) {
+    public Rectangle(final String nom, final int h,
+                     final int l, final Point p1) {
         super(nom);
         this.hauteur = h;
         this.largeur = l;

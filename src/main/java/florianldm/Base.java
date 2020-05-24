@@ -10,8 +10,16 @@ public class Base {
     private static Connection c;
 
     /**
+     * Constructeur.
+     */
+    public Base() {
+
+    }
+
+    /**
      * Gestion de la base de données.
      * Etablissement de la connexion.
+     * @throws SQLException .
      */
     public static void create() throws SQLException {
         try {
@@ -24,6 +32,7 @@ public class Base {
     /**
      * Suppression des tables de la BD.
      * @param c1 la connexion à la BD.
+     * @throws SQLException .
      */
     public static void drop(final Connection c1) throws SQLException {
         Statement s = c1.createStatement();
@@ -69,14 +78,15 @@ public class Base {
             e.printStackTrace();
         }
         try {
-            s.execute("CREATE TABLE Cercle (Nom VARCHAR(40) PRIMARY KEY" +
-                    ", PosX INT, PosY INT, Rayon INT)");
+            s.execute("CREATE TABLE Cercle (Nom VARCHAR(40) PRIMARY KEY"
+                    + ", PosX INT, PosY INT, Rayon INT)");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try {
             s.execute("CREATE TABLE Carre "
-                    + "(Nom VARCHAR(40) PRIMARY KEY, PosX INT, PosY INT, Rayon INT");
+                    + "(Nom VARCHAR(40) PRIMARY KEY, PosX INT,"
+                    + " PosY INT, Rayon INT");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -101,7 +111,7 @@ public class Base {
      * @throws SQLException .
      */
     public static void closeConnection() throws SQLException {
-        if(c != null) {
+        if (c != null) {
             c.close();
         }
     }

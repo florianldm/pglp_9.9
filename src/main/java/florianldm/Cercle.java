@@ -1,6 +1,6 @@
 package florianldm;
 
-public class Cercle extends Forme{
+public class Cercle extends Forme {
     /** Centre du cercle. */
     private Point centre;
     /** Rayon du cercle.*/

@@ -30,7 +30,8 @@ public class RectangleDaoJDBC extends DaoAbstrait {
             requete.setString(1, nomp);
             ResultSet r = requete.executeQuery(requete.toString());
             Point position = new Point(r.getInt(1), r.getInt(2));
-            p1 = new Rectangle(r.getString(0), r.getInt(3), r.getInt(4), position);
+            p1 = new Rectangle(r.getString(0),
+                    r.getInt(3), r.getInt(4), position);
         } catch (SQLException s) {
             s.printStackTrace();
         }

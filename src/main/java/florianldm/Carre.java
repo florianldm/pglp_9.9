@@ -44,7 +44,7 @@ public class Carre extends Forme {
     }
 
     /**
-     * Déplacement du carré
+     * Déplacement du carré.
      * @param p le point de destination.
      */
     @Override

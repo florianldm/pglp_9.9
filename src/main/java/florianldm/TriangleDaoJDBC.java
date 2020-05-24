@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TriangleDaoJDBC extends DaoAbstrait{
+public class TriangleDaoJDBC extends DaoAbstrait {
     /**
      * Constructeur.
      * @param c connexion à la BD.

@@ -24,5 +24,5 @@ public abstract class Forme {
      * Méthode qui déplace une forme.
      * @param p le point de destination.
      */
-    public abstract void move(final Point p);
+    public abstract void move(Point p);
 }

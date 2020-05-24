@@ -1,10 +1,12 @@
 package florianldm;
 
 public class CommandeMove implements Commande {
-    /** Forme à déplacer */
+    /** Forme à déplacer. */
     private Forme f;
     /** Destination. */
     private Point destination;
+    /** Groupe (si déplacement de groupe). */
+    private Groupe g;
 
     /**
      * Constructeur avec une forme.
@@ -14,6 +16,16 @@ public class CommandeMove implements Commande {
     public CommandeMove(final Forme f1, final Point dest) {
         this.f = f1;
         this.destination = dest;
+    }
+
+    /**
+     * 2e constructeur (pour déplacement de groupe).
+     * @param g1 groupe.
+     * @param dest destination.
+     */
+    public CommandeMove(final Groupe g1, final Point dest) {
+        this.destination = dest;
+        this.g = g1;
     }
 
     @Override

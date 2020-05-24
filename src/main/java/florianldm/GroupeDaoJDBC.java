@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class GroupeDaoJDBC extends DaoAbstrait{
+public class GroupeDaoJDBC extends DaoAbstrait {
     /**
      * Constructeur.
      * @param c connexion à la BD.
@@ -37,8 +37,12 @@ public class GroupeDaoJDBC extends DaoAbstrait{
                 while (r.next()) {
                     nomp = r.getString(2);
                     PreparedStatement requete2 = c.prepareStatement(
-                            "SELECT * FROM Carre WHERE nom = ? UNION SELECT * FROM Triangle WHERE nom = ?"
-                                    + " UNION SELECT * FROM Rectangle WHERE nom = ? UNION "
+                            "SELECT * FROM Carre WHERE nom = ?"
+                                    + " UNION SELECT * FROM "
+                                    + "Triangle WHERE nom = ?"
+                                    + " UNION SELECT * FROM "
+                                    + "Rectangle WHERE nom ="
+                                    + " ? UNION "
                                     + "SELECT * FROM Cercle WHERE nom = ?");
                     requete2.setString(1, nomp);
                     requete2.setString(2, nomp);
@@ -46,23 +50,36 @@ public class GroupeDaoJDBC extends DaoAbstrait{
                     requete2.setString(4, nomp);
                     ResultSet r2 = requete2.executeQuery(requete2.toString());
                     if (nomp.startsWith("tr")) { //Si l'objet est un triangle
-                        Point p1 = new Point(r2.getInt(1), r2.getInt(2));
-                        Point p2 = new Point(r2.getInt(3), r2.getInt(4));
-                        Point p3 = new Point(r2.getInt(5), r2.getInt(6));
-                        Triangle p = new Triangle(r2.getString(0), p1, p2, p3);
+                        Point p1 = new Point(r2.getInt(1),
+                                r2.getInt(2));
+                        Point p2 = new Point(r2.getInt(3),
+                                r2.getInt(4));
+                        Point p3 = new Point(r2.getInt(5),
+                                r2.getInt(6));
+                        Triangle p = new Triangle(r2.getString(0),
+                                p1, p2, p3);
                         g.add(p);
-                    } else if (nomp.startsWith("cr")) { //Si l'objrt est un carré
-                        Point p1 = new Point(r2.getInt(1), r2.getInt(2));
-                        Carre p  = new Carre(r2.getString(0), p1, r2.getInt(3));
+                        //Si l'objrt est un carré
+                    } else if (nomp.startsWith("cr")) {
+                        Point p1 = new Point(r2.getInt(1),
+                                r2.getInt(2));
+                        Carre p  = new Carre(r2.getString(0),
+                                p1, r2.getInt(3));
                         g.add(p);
-                    } else if (nomp.startsWith("rc")) { //Si l'objet est un rectangle
-                        Point p1 = new Point(r2.getInt(3), r2.getInt(4));
+                        //Si l'objet est un rectangle
+                    } else if (nomp.startsWith("rc")) {
+                        Point p1 = new Point(r2.getInt(3),
+                                r2.getInt(4));
                         Rectangle p = new Rectangle(r2.getString(0),
-                                r2.getInt(1), r2.getInt(2), p1);
+                                r2.getInt(1),
+                                r2.getInt(2), p1);
                         g.add(p);
-                    } else if (nomp.startsWith("ce")) { //Si l'objet est un cercle
-                        Point p1 = new Point(r2.getInt(1), r2.getInt(2));
-                        Cercle p = new Cercle(r2.getString(0), p1, r2.getInt(3));
+                        //Si l'objet est un cercle
+                    } else if (nomp.startsWith("ce")) {
+                        Point p1 = new Point(r2.getInt(1),
+                                r2.getInt(2));
+                        Cercle p = new Cercle(r2.getString(0), p1,
+                                r2.getInt(3));
                         g.add(p);
                     }
                 }
@@ -85,7 +102,7 @@ public class GroupeDaoJDBC extends DaoAbstrait{
      * du groupe un tuple nom groupe - nom forme.
      * @param o le groupe (pour le nom).
      * @return null.
-     * @throws SQLException
+     * @throws SQLException .
      */
     @Override
     public Object save(final Object o) throws SQLException {

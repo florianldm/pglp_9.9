@@ -26,13 +26,16 @@ public abstract class DaoAbstrait<T> {
      * Méthode save.
      * @param t à sauvegarder.
      * @return T.
+     * @throws SQLException .
      */
     public abstract T save(T t) throws SQLException;
 
     /**
      * Méthode update.
      * @param t à mettre à jour.
+     * @param nom nom.
      * @return T.
+     * @throws SQLException .
      */
     public abstract T update(T t, String nom) throws SQLException;
 
@@ -40,6 +43,7 @@ public abstract class DaoAbstrait<T> {
      * Méthode delete.
      * @param t à supprimer.
      * @return T.
+     * @throws SQLException .
      */
     public abstract  T delete(T t) throws SQLException;
 

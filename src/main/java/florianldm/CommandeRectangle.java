@@ -1,6 +1,6 @@
 package florianldm;
 
-public class CommandeRectangle implements Commande{
+public class CommandeRectangle implements Commande {
     /** Le rectangle sur lequel exécuter la commande. */
     private Rectangle r;
 

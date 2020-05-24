@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DrawingApp {
+    /**
+     * Méthode exec qui contient la boucle des interactions.
+     * entre l'application et l'utilisateur.
+     */
     public void exec() {
         String commande = "";
         Scanner cmd = new Scanner(System.in);
